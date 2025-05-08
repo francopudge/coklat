@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Susu Coklat king Gembira</title>
+    <title>Susu Coklat Gembira</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -88,6 +88,27 @@
       .whatsapp-button:hover {
         background-color: #128c7e;
       }
+
+      .btn-pesan {
+        background-color: #7b3f00;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        margin-top: 15px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 8px;
+      }
+
+      .btn-pesan:hover {
+        background-color: #9c5a22;
+      }
+
+      input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        margin-left: 10px;
+      }
     </style>
   </head>
   <body>
@@ -121,30 +142,33 @@
     <section id="produk">
       <h2>Produk Susu</h2>
       <ul>
-        <li>Susu Botol 250ml</li>
+        <li>
+          Susu Coklat Botol 250ml
+          <input type="number" id="jumlah" min="1" value="1" />
+          <button
+            class="btn-pesan"
+            onclick="kirimPesanWhatsApp('Susu Coklat Botol 250ml')"
+          >
+            Pesan via WhatsApp
+          </button>
+        </li>
       </ul>
     </section>
 
     <section id="nutrisi">
       <h2>Informasi Nutrisi</h2>
-      <p>Energi: ±150–200 kkal</p>
-      <br />
-      <p>Protein: ±5 gram</p>
-      <br />
-      <p>Kalsium: ±200–300 mg</p>
-      <br />
-      <p>Karbohidrat:±25 gram</p>
-      <br />
-      <p>Lemak: ±3 gram</p>
-      <br />
-      <p>Vitamin D & A</p>
+      <p>
+        Susu kami mengandung kalsium tinggi, protein, vitamin D, dan mineral
+        penting lainnya yang baik untuk pertumbuhan dan energi harian.
+      </p>
     </section>
 
     <section id="edukasi">
       <h2>Edukasi</h2>
       <p>
-        Tahukah Anda? Minuman susu yang mengandung protein dan karbohidrat bisa
-        membantu mengisi kembali energi setelah beraktivitas.
+        Tahukah Anda? Minum susu coklat setelah olahraga bisa membantu pemulihan
+        otot lebih baik karena kandungan protein dan karbohidratnya yang
+        seimbang.
       </p>
     </section>
 
@@ -170,19 +194,28 @@
     >
 
     <script>
+      // Smooth scroll fix for offset header
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
-
           const targetId = this.getAttribute("href").substring(1);
           const targetElement = document.getElementById(targetId);
-
           window.scrollTo({
             top: targetElement.offsetTop - 120,
             behavior: "smooth",
           });
         });
       });
+
+      function kirimPesanWhatsApp(produk) {
+        const jumlah = document.getElementById("jumlah").value || 1;
+        const nomorWA = "0857727717373";
+        const pesan = `Halo! Saya ingin memesan:\nProduk: ${produk}\nJumlah: ${jumlah}`;
+        const link = `https://wa.me/${nomorWA}?text=${encodeURIComponent(
+          pesan
+        )}`;
+        window.open(link, "_blank");
+      }
     </script>
   </body>
 </html>
